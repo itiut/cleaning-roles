@@ -33,7 +33,7 @@ function AssignmentsList (props) {
 function AssignmentsPanel (props) {
   return (
     <React.Fragment>
-      <CelledPanelHeader icon='shuffle' text='割り当て' />
+      <CelledPanelHeader content='割り当て' icon='shuffle' />
       <CelledPanelSegment>
         <Button primary size='large' disabled={!props.canAssign} onClick={props.assignHandler}>実行</Button>
       </CelledPanelSegment>

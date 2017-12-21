@@ -1,15 +1,8 @@
 import React from 'react';
-import { Header, Icon, Segment, Table } from 'semantic-ui-react';
+import { Header, Segment, Table } from 'semantic-ui-react';
 
 function CelledPanelHeader (props) {
-  return (
-    <Header as='h2' attached='top'>
-      <Icon name={props.icon} />
-      <Header.Content>
-        {props.text}
-      </Header.Content>
-    </Header>
-  );
+  return <Header as='h2' attached='top' {...props} />;
 }
 
 function CelledPanelSegment (props) {
@@ -20,8 +13,7 @@ function CelledPanelSegment (props) {
   );
 }
 
-function CelledPanelTable (props) {
-  const { celled, selectable } = props;
+function CelledPanelTable ({ celled, selectable, ...props }) {
   return (
     <Table attached size='large' striped { ...{ celled, selectable }}>
       <Table.Body>

@@ -72,8 +72,8 @@ function RolesPanel (props) {
       {...props}
       type='roles'
       header={{
-        icon: 'wrench',
-        text: '役割'
+        content: '役割',
+        icon: 'wrench'
       }}
       checkedCount={{
         color: props.error ? 'red' : null,
@@ -89,8 +89,8 @@ function UsersPanel (props) {
       {...props}
       type='users'
       header={{
-        icon: 'user',
-        text: '掃除する人'
+        content: '掃除する人',
+        icon: 'user'
       }}
       label='さん'
       checkedCount={{
