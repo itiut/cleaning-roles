@@ -6,7 +6,7 @@ function AssignmentsListItem (props) {
   return (
     <Table.Row className='AssignmentsListItem'>
       <Table.Cell>
-        {props.userName}
+        {props.userName} さん
       </Table.Cell>
       <Table.Cell>
         {props.roleName}
@@ -16,11 +16,12 @@ function AssignmentsListItem (props) {
 }
 
 function AssignmentsList (props) {
-  if (props.items.length <= 0) {
+  if (props.items.length === 0) {
     return null;
   }
+
   const listItems = props.items.map((item, index) => (
-    <AssignmentsListItem key={item.id} userName={item.name} roleName={item.assignment ? item.assignment.name : ''} />
+    <AssignmentsListItem key={item.id} userName={item.value} roleName={item.assignment ? item.assignment.value : ''} />
   ));
   return (
     <Table attached celled striped size='large'>

@@ -1,24 +1,20 @@
 import React from 'react';
-import { Header, Icon, Segment, Statistic } from 'semantic-ui-react';
-import TogglableList from './TogglableList';
+import ListPanel from './ListPanel';
 
 function RolesPanel (props) {
   return (
-    <React.Fragment>
-      <Header as='h2' attached='top'>
-        <Icon name='wrench' />
-        <Header.Content>
-          役割
-        </Header.Content>
-      </Header>
-      <Segment attached textAlign='right'>
-        <Statistic horizontal color={(props.nCheckedRoles > props.nCheckedUsers) ? 'red' : 'black'}>
-          <Statistic.Value>{props.nCheckedRoles}</Statistic.Value>
-          <Statistic.Label>コ</Statistic.Label>
-        </Statistic>
-      </Segment>
-      <TogglableList items={props.roles} handleItemChange={(index, newElem) => props.handleItemChange('roles', index, newElem)} />
-    </React.Fragment>
+    <ListPanel
+      {...props}
+      type='roles'
+      header={{
+        icon: 'wrench',
+        text: '役割'
+      }}
+      statistic={{
+        color: props.error ? 'red' : null,
+        label: 'コ'
+      }}
+    />
   );
 }
 

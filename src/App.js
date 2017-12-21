@@ -5,6 +5,7 @@ import AssignmentsPanel from './AssignmentsPanel';
 import RolesPanel from './RolesPanel';
 import StepPanel from './StepPanel';
 import UsersPanel from './UsersPanel';
+import { checkedItems } from './helpers';
 import './App.css';
 
 const roles = [
@@ -34,11 +35,11 @@ class App extends Component {
   }
 
   get checkedRoles () {
-    return this.state.roles.filter(role => role.checked);
+    return checkedItems(this.state.roles);
   }
 
   get checkedUsers () {
-    return this.state.users.filter(user => user.checked);
+    return checkedItems(this.state.users);
   }
 
   handleItemChange (key, index, newElem) {
@@ -107,10 +108,12 @@ class App extends Component {
         <Grid centered columns={3}>
           <Grid.Row centered>
             <Grid.Column>
-              <UsersPanel users={this.state.users} nCheckedUsers={nCheckedUsers} handleItemChange={this.handleItemChange} handleItemSwap={this.handleItemSwap} />
+              <UsersPanel items={this.state.users} handleItemChange={this.handleItemChange} handleItemSwap={this.handleItemSwap} />
             </Grid.Column>
             <Grid.Column>
-              <RolesPanel roles={this.state.roles} nCheckedRoles={nCheckedRoles} nCheckedUsers={nCheckedUsers} nMaxRoles={nCheckedUsers} handleItemChange={this.handleItemChange} />
+              <RolesPanel items={this.state.roles} handleItemChange={this.handleItemChange} handleItemSwap={this.handleItemSwap}
+                error={this.checkedRoles.length > this.checkedUsers.length}
+              />
             </Grid.Column>
             <Grid.Column>
               <AssignmentsPanel assignments={this.state.assignments} canAssign={canAssign} assignHandler={this.assignRoles} />

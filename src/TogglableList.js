@@ -5,7 +5,7 @@ function TogglableListItem (props) {
   return (
     <Table.Row onClick={props.onClick}>
       <Table.Cell width={13}>
-        {props.value}{props.sub ? ` ${props.sub}` : null}
+        {props.value}{props.label ? ` ${props.label}` : null}
       </Table.Cell>
       <Table.Cell width={3}>
         <Checkbox toggle checked={props.checked} />
@@ -23,7 +23,7 @@ function TogglableList (props) {
     <TogglableListItem
       key={item.id}
       {...item}
-      sub={props.sub}
+      label={props.label}
       onClick={e => props.handleItemChange(index, { ...item, checked: !item.checked })} />
   ));
   return (
