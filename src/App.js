@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Container, Grid, Header } from 'semantic-ui-react';
 import AssignmentsPanel from './AssignmentsPanel';
 import LinkPanel from './LinkPanel';
@@ -8,7 +8,7 @@ import UsersPanel from './UsersPanel';
 import { checkedItems, createItems, normalizeItem, urlSearchString } from './model';
 import './App.css';
 
-class App extends Component {
+class App extends React.Component {
   constructor (props) {
     super(props);
     const { roles, users } = createItems(window.location);
