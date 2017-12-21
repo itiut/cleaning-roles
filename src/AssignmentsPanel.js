@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Table } from 'semantic-ui-react';
-import { CelledPanelHeader, CelledPanelSegment } from './CelledPanel';
+import { CelledPanelHeader, CelledPanelSegment, CelledPanelTable } from './CelledPanel';
 
 function AssignmentsListItem (props) {
   return (
@@ -24,11 +24,9 @@ function AssignmentsList (props) {
     <AssignmentsListItem key={item.id} userName={item.value} roleName={item.assignment ? item.assignment.value : ''} />
   ));
   return (
-    <Table attached celled striped size='large'>
-      <Table.Body>
-        {listItems}
-      </Table.Body>
-    </Table>
+    <CelledPanelTable celled>
+      {listItems}
+    </CelledPanelTable>
   );
 }
 

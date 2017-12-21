@@ -1,5 +1,6 @@
 import React from 'react';
 import { Checkbox, Table } from 'semantic-ui-react';
+import { CelledPanelTable } from './CelledPanel';
 
 function TogglableListItem (props) {
   return (
@@ -27,11 +28,9 @@ function TogglableList (props) {
       onClick={e => props.handleItemChange(index, { ...item, checked: !item.checked })} />
   ));
   return (
-    <Table attached selectable striped size='large'>
-      <Table.Body>
-        {listItems}
-      </Table.Body>
-    </Table>
+    <CelledPanelTable selectable>
+      {listItems}
+    </CelledPanelTable>
   );
 }
 

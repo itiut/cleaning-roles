@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Input, Table } from 'semantic-ui-react';
-import { CelledPanelSegment } from './CelledPanel';
+import { CelledPanelSegment, CelledPanelTable } from './CelledPanel';
 
 class AddingInput extends React.Component {
   constructor (props) {
@@ -61,11 +61,9 @@ function EditableList (props) {
     />
   ));
   const list = props.items.length === 0 ? null : (
-    <Table attached striped size='large'>
-      <Table.Body>
-        {listItems}
-      </Table.Body>
-    </Table>
+    <CelledPanelTable>
+      {listItems}
+    </CelledPanelTable>
   );
   return (
     <React.Fragment>
