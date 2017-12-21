@@ -79,15 +79,9 @@ class App extends React.Component {
     return (
       <Container>
         <Header as='h1' content='掃除の割り当て' dividing />
-        <Grid columns={1} className='StepPanelGrid'>
+        <StepPanel />
+        <Grid columns={3}>
           <Grid.Row>
-            <Grid.Column>
-              <StepPanel />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-        <Grid centered columns={3}>
-          <Grid.Row centered>
             <Grid.Column>
               <UsersPanel items={this.state.users} handleItemChange={this.handleItemChange} handleItemSwap={this.handleItemSwap} />
             </Grid.Column>

@@ -2,7 +2,6 @@
   margin-top: 3rem;
 }
 
-.ui.grid.StepPanelGrid {
-  margin-top: 0;
-  margin-bottom: 0;
+.ui.steps.StepPanel {
+  margin-bottom: 2.5rem;
 }
