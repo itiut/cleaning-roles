@@ -15,6 +15,10 @@ function TogglableListItem (props) {
 }
 
 function TogglableList (props) {
+  if (props.items.length === 0) {
+    return null;
+  }
+
   const listItems = props.items.map((item, index) => (
     <TogglableListItem
       key={item.id}

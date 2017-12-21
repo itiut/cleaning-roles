@@ -64,13 +64,16 @@ function EditableList (props) {
       handleItemDelete={e => props.handleItemChange(index)}
     />
   ));
+  const list = props.items.length === 0 ? null : (
+    <Table attached striped size='large'>
+      <Table.Body>
+        {listItems}
+      </Table.Body>
+    </Table>
+  );
   return (
     <React.Fragment>
-      <Table attached striped size='large'>
-        <Table.Body>
-          {listItems}
-        </Table.Body>
-      </Table>
+      {list}
       <Segment attached>
         <AddingInput handleItemAdd={value => props.handleItemChange(props.items.length, { value })} />
       </Segment>
