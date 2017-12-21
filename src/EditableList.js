@@ -37,9 +37,9 @@ function EditableListItem (props) {
       <Table.Cell width={16}>
         <Input action fluid value={props.value} error={props.error} onChange={props.onChange} >
           <input />
-          <Button icon='arrow up' disabled={!props.canMoveUp} onClick={props.handleItemMoveUp} />
-          <Button icon='arrow down' disabled={!props.canMoveDown} onClick={props.handleItemMoveDown} />
-          <Button icon='delete' negative onClick={props.handleItemDelete} />
+          <Button size='small' icon='arrow up' disabled={!props.canMoveUp} onClick={props.handleItemMoveUp} />
+          <Button size='small' icon='arrow down' disabled={!props.canMoveDown} onClick={props.handleItemMoveDown} />
+          <Button size='small' icon='delete' negative onClick={props.handleItemDelete} />
         </Input>
       </Table.Cell>
     </Table.Row>
