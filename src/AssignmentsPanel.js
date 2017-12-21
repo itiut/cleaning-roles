@@ -11,7 +11,7 @@ function AssignmentPanel (props) {
           割り当て
         </Header.Content>
       </Header>
-      <Segment attached textAlign='right'>
+      <Segment attached textAlign='center'>
         <Button primary size='large' disabled={!props.canAssign} onClick={props.assignHandler}>実行</Button>
       </Segment>
       <AssignmentsList items={props.assignments} />

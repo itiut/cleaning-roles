@@ -24,7 +24,7 @@ function ListPanelHeader (props) {
 
 function ListPanelStatistic (props) {
   return (
-    <Segment attached textAlign='right'>
+    <Segment attached textAlign='center'>
       <Statistic horizontal color={props.color || 'black'}>
         <Statistic.Value>{props.value}</Statistic.Value>
         <Statistic.Label>{props.label}</Statistic.Label>
@@ -64,7 +64,7 @@ class ListPanel extends React.Component {
         {this.state.editing
           ? <EditableList items={this.props.items} handleItemChange={this.handleItemChange} handleItemSwap={this.handleItemSwap} />
           : <TogglableList items={this.props.items} label={this.props.label} handleItemChange={this.handleItemChange} />}
-        <Segment attached textAlign='right'>
+        <Segment attached textAlign='center'>
           <EditButton
             editing={this.state.editing}
             disabled={this.props.items.length === 0 || this.props.items.some(item => item.value.length === 0)}
