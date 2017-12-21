@@ -1,10 +1,9 @@
 import React from 'react';
 import { Container, Grid, Header } from 'semantic-ui-react';
 import AssignmentsPanel from './AssignmentsPanel';
-import RolesPanel from './RolesPanel';
+import { RolesPanel, UsersPanel } from './ItemsListPanel';
 import StepPanel from './StepPanel';
 import UrlPanel from './UrlPanel';
-import UsersPanel from './UsersPanel';
 import { checkedItems, decodeItems, encodeItems, normalizeItem } from './model';
 import './App.css';
 

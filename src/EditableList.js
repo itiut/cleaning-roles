@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Input, Table } from 'semantic-ui-react';
-import Segment from 'semantic-ui-react/dist/commonjs/elements/Segment/Segment';
+import { CelledPanelSegment } from './CelledPanel';
 
 class AddingInput extends React.Component {
   constructor (props) {
@@ -70,9 +70,9 @@ function EditableList (props) {
   return (
     <React.Fragment>
       {list}
-      <Segment attached>
+      <CelledPanelSegment>
         <AddingInput handleItemAdd={value => props.handleItemChange(props.items.length, { value })} />
-      </Segment>
+      </CelledPanelSegment>
     </React.Fragment>
   );
 }

@@ -1,19 +1,15 @@
 import React from 'react';
-import { Button, Header, Icon, Segment } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import AssignmentsList from './AssignmentsList';
+import { CelledPanelHeader, CelledPanelSegment } from './CelledPanel';
 
 function AssignmentPanel (props) {
   return (
     <React.Fragment>
-      <Header as='h2' attached='top'>
-        <Icon name='shuffle' />
-        <Header.Content>
-          割り当て
-        </Header.Content>
-      </Header>
-      <Segment attached textAlign='center'>
+      <CelledPanelHeader icon='shuffle' text='割り当て' />
+      <CelledPanelSegment>
         <Button primary size='large' disabled={!props.canAssign} onClick={props.assignHandler}>実行</Button>
-      </Segment>
+      </CelledPanelSegment>
       <AssignmentsList items={props.assignments} />
     </React.Fragment>
   );
