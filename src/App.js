@@ -5,13 +5,13 @@ import RolesPanel from './RolesPanel';
 import StepPanel from './StepPanel';
 import UrlPanel from './UrlPanel';
 import UsersPanel from './UsersPanel';
-import { checkedItems, createItems, normalizeItem, urlSearchString } from './model';
+import { checkedItems, decodeItems, encodeItems, normalizeItem } from './model';
 import './App.css';
 
 class App extends React.Component {
   constructor (props) {
     super(props);
-    const { roles, users } = createItems(window.location);
+    const { roles, users } = decodeItems(window.location);
     this.state = {
       roles, users,
       assignments: []
@@ -30,7 +30,7 @@ class App extends React.Component {
   }
 
   get currentUrl () {
-    return window.location.origin + '?' + urlSearchString(this.state.roles, this.state.users);
+    return encodeItems(window.location, this.state.roles, this.state.users);
   }
 
   handleItemChange (key, index, newItem) {

@@ -1,5 +1,5 @@
 function decodeParams (location, keys) {
-  const params = new URLSearchParams(location.search.slice(1));
+  const params = new URL(location).searchParams;
   const out = {};
   for (const key of keys) {
     out[key + 's'] = params.getAll(key);
@@ -7,8 +7,10 @@ function decodeParams (location, keys) {
   return out;
 }
 
-function encodeParams (init) {
-  return new URLSearchParams(init);
+function encodeParams (location, init) {
+  const params = new URLSearchParams(init);
+  const url = new URL('?' + params.toString(), location.origin);
+  return url.toString();
 }
 
 export { decodeParams, encodeParams };

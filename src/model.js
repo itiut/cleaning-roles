@@ -5,7 +5,7 @@ function checkedItems (items) {
   return items.filter(item => item.checked);
 }
 
-function createItems (location) {
+function decodeItems (location) {
   const params = decodeParams(location, ['role', 'user']);
   const out = {};
   for (const [key, values] of Object.entries(params)) {
@@ -17,12 +17,12 @@ function createItems (location) {
   return out;
 }
 
-function urlSearchString (roles, users) {
+function encodeItems (location, roles, users) {
   const paramArray = [
     ...roles.map(role => ['role', role.value]),
     ...users.map(user => ['user', user.value])
   ];
-  return encodeParams(paramArray);
+  return encodeParams(location, paramArray);
 }
 
 function normalizeItem (item) {
@@ -31,4 +31,4 @@ function normalizeItem (item) {
   }
 }
 
-export { checkedItems, createItems, normalizeItem, urlSearchString };
+export { checkedItems, decodeItems, encodeItems, normalizeItem };
