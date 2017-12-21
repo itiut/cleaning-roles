@@ -34,7 +34,7 @@ class App extends React.Component {
   }
 
   handleItemChange (key, index, newItem) {
-    const newArray = this.state[key].slice();
+    const newArray = this.state[key];
     if (newItem) {
       // update or add
       normalizeItem(newItem);
@@ -50,7 +50,7 @@ class App extends React.Component {
     if (i < 0 || j >= this.state[key].length) {
       return;
     }
-    const newArray = this.state[key].slice();
+    const newArray = this.state[key];
     [newArray[i], newArray[j]] = [newArray[j], newArray[i]]
     this.setState({ [key]: newArray });
   }
