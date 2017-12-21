@@ -2,10 +2,10 @@ import React from 'react';
 import { Header, Input } from 'semantic-ui-react';
 import copy from 'copy-to-clipboard';
 
-function LinkPanel (props) {
+function UrlPanel (props) {
   return (
     <React.Fragment>
-      <Header as='h2' content='現在の設定のリンク' dividing size='small' icon='linkify' />
+      <Header as='h2' content='現在の設定のURL' dividing size='small' icon='linkify' />
       <Input
         action={{
           color: 'teal',
@@ -22,4 +22,4 @@ function LinkPanel (props) {
   );
 }
 
-export default LinkPanel;
+export default UrlPanel;

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container, Grid, Header } from 'semantic-ui-react';
 import AssignmentsPanel from './AssignmentsPanel';
-import LinkPanel from './LinkPanel';
 import RolesPanel from './RolesPanel';
 import StepPanel from './StepPanel';
+import UrlPanel from './UrlPanel';
 import UsersPanel from './UsersPanel';
 import { checkedItems, createItems, normalizeItem, urlSearchString } from './model';
 import './App.css';
@@ -102,7 +102,7 @@ class App extends React.Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <LinkPanel value={this.currentUrl} />
+        <UrlPanel value={this.currentUrl} />
       </Container>
     );
   }
