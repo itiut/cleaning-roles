@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Header, Icon, Segment, Statistic } from 'semantic-ui-react';
 import EditableList from './EditableList';
 import TogglableList from './TogglableList';
-import { checkedItems } from './helpers';
+import { checkedItems } from './model';
 
 function EditButton (props) {
   if (props.editing) {

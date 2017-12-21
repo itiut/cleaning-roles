@@ -1,6 +1,5 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
-import './AssignmentsList.css';
 
 function AssignmentsListItem (props) {
   return (

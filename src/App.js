@@ -1,31 +1,17 @@
 import React, { Component } from 'react';
 import { Container, Grid, Header } from 'semantic-ui-react';
-import shortid from 'shortid';
 import AssignmentsPanel from './AssignmentsPanel';
+import LinkPanel from './LinkPanel';
 import RolesPanel from './RolesPanel';
 import StepPanel from './StepPanel';
 import UsersPanel from './UsersPanel';
-import LinkPanel from './LinkPanel';
-import { checkedItems } from './helpers';
+import { checkedItems, createItems, normalizeItem, urlSearchString } from './model';
 import './App.css';
-
-const roles = [
-  { id: shortid.generate(), value: 'ゴミ捨て' },
-  { id: shortid.generate(), value: 'ゴミ袋設置' },
-  { id: shortid.generate(), value: 'テーブル拭き' },
-];
-
-const users = [
-  { id: shortid.generate(), value: 'A' },
-  { id: shortid.generate(), value: 'B' },
-  { id: shortid.generate(), value: 'C' },
-  { id: shortid.generate(), value: 'D' },
-  { id: shortid.generate(), value: 'E' }
-];
 
 class App extends Component {
   constructor (props) {
     super(props);
+    const { roles, users } = createItems(window.location);
     this.state = {
       roles, users,
       assignments: []
@@ -43,15 +29,16 @@ class App extends Component {
     return checkedItems(this.state.users);
   }
 
-  handleItemChange (key, index, newElem) {
+  get currentUrl () {
+    return window.location.origin + '?' + urlSearchString(this.state.roles, this.state.users);
+  }
+
+  handleItemChange (key, index, newItem) {
     const newArray = this.state[key].slice();
-    if (newElem) {
+    if (newItem) {
       // update or add
-      if (!newElem.id) {
-        // add
-        newElem.id = shortid.generate();
-      }
-      newArray.splice(index, 1, newElem);
+      normalizeItem(newItem);
+      newArray.splice(index, 1, newItem);
     } else {
       // delete
       newArray.splice(index, 1);
@@ -107,7 +94,7 @@ class App extends Component {
             </Grid.Column>
             <Grid.Column>
               <RolesPanel items={this.state.roles} handleItemChange={this.handleItemChange} handleItemSwap={this.handleItemSwap}
-                error={this.checkedRoles.length > this.checkedUsers.length}
+                error={nCheckedRoles > nCheckedUsers}
               />
             </Grid.Column>
             <Grid.Column>
@@ -115,7 +102,7 @@ class App extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <LinkPanel value={window.location.href} />
+        <LinkPanel value={this.currentUrl} />
       </Container>
     );
   }
