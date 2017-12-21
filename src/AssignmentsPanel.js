@@ -3,7 +3,7 @@ import { Button } from 'semantic-ui-react';
 import AssignmentsList from './AssignmentsList';
 import { CelledPanelHeader, CelledPanelSegment } from './CelledPanel';
 
-function AssignmentPanel (props) {
+function AssignmentsPanel (props) {
   return (
     <React.Fragment>
       <CelledPanelHeader icon='shuffle' text='割り当て' />
@@ -15,4 +15,4 @@ function AssignmentPanel (props) {
   );
 }
 
-export default AssignmentPanel;
+export default AssignmentsPanel;
