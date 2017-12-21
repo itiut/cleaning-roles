@@ -27,8 +27,8 @@ class App extends Component {
       roles, users,
       assignments: []
     };
-    this.toggleItem = this.toggleItem.bind(this);
     this.assignRoles = this.assignRoles.bind(this);
+    this.handleItemChange = this.handleItemChange.bind(this);
   }
 
   get checkedRoles () {
@@ -39,9 +39,9 @@ class App extends Component {
     return this.state.users.filter(user => user.checked);
   }
 
-  toggleItem (key, array, index) {
+  handleItemChange (key, array, index, newElem) {
     const newArray = array.slice();
-    newArray[index].checked = !newArray[index].checked;
+    newArray.splice(index, 1, newElem);
     this.setState(prevState => ({
       [key]: newArray
     }));
@@ -84,10 +84,10 @@ class App extends Component {
         <Grid centered columns={3}>
           <Grid.Row centered>
             <Grid.Column>
-              <UsersPanel users={this.state.users} nCheckedUsers={nCheckedUsers} toggleHandler={this.toggleItem} />
+              <UsersPanel users={this.state.users} nCheckedUsers={nCheckedUsers} handleItemChange={this.handleItemChange} />
             </Grid.Column>
             <Grid.Column>
-              <RolesPanel roles={this.state.roles} nCheckedRoles={nCheckedRoles} nCheckedUsers={nCheckedUsers} nMaxRoles={nCheckedUsers} toggleHandler={this.toggleItem} />
+              <RolesPanel roles={this.state.roles} nCheckedRoles={nCheckedRoles} nCheckedUsers={nCheckedUsers} nMaxRoles={nCheckedUsers} handleItemChange={this.handleItemChange} />
             </Grid.Column>
             <Grid.Column>
               <AssignmentsPanel assignments={this.state.assignments} canAssign={canAssign} assignHandler={this.assignRoles} />

@@ -17,7 +17,7 @@ function UsersPanel (props) {
           <Statistic.Label>人</Statistic.Label>
         </Statistic>
       </Segment>
-      <TogglableList items={props.users} toggleHandler={index => props.toggleHandler('users', props.users, index)} />
+      <TogglableList items={props.users} handleItemChange={(index, newElem) => props.handleItemChange('users', props.users, index, newElem)} />
     </React.Fragment>
   );
 }
