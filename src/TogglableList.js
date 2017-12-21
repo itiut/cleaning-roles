@@ -5,7 +5,10 @@ import { CelledPanelTable } from './CelledPanel';
 function TogglableListItem (props) {
   return (
     <Table.Row onClick={props.onClick}>
-      <Table.Cell width={13}>
+      <Table.Cell width={1} textAlign='center'>
+        {props.index}.
+      </Table.Cell>
+      <Table.Cell width={12}>
         {props.value}{props.label ? ` ${props.label}` : null}
       </Table.Cell>
       <Table.Cell width={3}>
@@ -24,6 +27,7 @@ function TogglableList (props) {
     <TogglableListItem
       key={item.id}
       {...item}
+      index={index + 1}
       label={props.label}
       onClick={e => props.handleItemChange(index, { ...item, checked: !item.checked })} />
   ));
