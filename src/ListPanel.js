@@ -6,7 +6,7 @@ import { checkedItems } from './helpers';
 
 function EditButton (props) {
   if (props.editing) {
-    return <Button content='確定' onClick={props.onClick} size='large' primary disabled={props.disabled} />;
+    return <Button content='完了' onClick={props.onClick} size='large' primary disabled={props.disabled} />;
   }
   return <Button content='編集' onClick={props.onClick} size='large' />;
 }

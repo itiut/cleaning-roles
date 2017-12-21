@@ -5,6 +5,7 @@ import AssignmentsPanel from './AssignmentsPanel';
 import RolesPanel from './RolesPanel';
 import StepPanel from './StepPanel';
 import UsersPanel from './UsersPanel';
+import LinkPanel from './LinkPanel';
 import { checkedItems } from './helpers';
 import './App.css';
 
@@ -95,9 +96,7 @@ class App extends Component {
     const canAssign = nCheckedRoles > 0 && nCheckedUsers > 0 && nCheckedRoles <= nCheckedUsers;
     return (
       <Container>
-        <Header as='h1' dividing>
-          掃除の割り当て
-        </Header>
+        <Header as='h1' content='掃除の割り当て' dividing />
         <Grid columns={1} className='StepPanelGrid'>
           <Grid.Row>
             <Grid.Column>
@@ -120,6 +119,7 @@ class App extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
+        <LinkPanel value={window.location.href} />
       </Container>
     );
   }
