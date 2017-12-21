@@ -67,9 +67,7 @@ class App extends React.Component {
       const i = Math.floor(Math.random() * checkedRoles.length);
       user.assignment = checkedRoles.splice(i, 1)[0];
     });
-    this.setState(prevState => ({
-      assignments: checkedUsers
-    }));
+    this.setState({ assignments: checkedUsers });
   }
 
   render () {
