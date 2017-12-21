@@ -53,9 +53,7 @@ class ListPanel extends React.Component {
   }
 
   toggleEditing () {
-    this.setState(prevState => ({
-      editing: !this.state.editing
-    }));
+    this.setState({ editing: !this.state.editing });
   }
 
   render () {

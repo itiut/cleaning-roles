@@ -13,16 +13,12 @@ class AddingInput extends React.Component {
   }
 
   handleChange (event, data) {
-    this.setState(prevState => ({
-      value: data.value
-    }));
+    this.setState({ value: data.value });
   }
 
   handleSubmit (event) {
     this.props.handleItemAdd(this.state.value.trim());
-    this.setState(prevState => ({
-      value: ''
-    }));
+    this.setState({ value: '' });
   }
 
   render () {

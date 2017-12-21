@@ -56,9 +56,7 @@ class App extends Component {
       // delete
       newArray.splice(index, 1);
     }
-    this.setState(prevState => ({
-      [key]: newArray
-    }));
+    this.setState({ [key]: newArray });
   }
 
   handleItemSwap (key, i, j) {
@@ -67,9 +65,7 @@ class App extends Component {
     }
     const newArray = this.state[key].slice();
     [newArray[i], newArray[j]] = [newArray[j], newArray[i]]
-    this.setState(prevState => ({
-      [key]: newArray
-    }));
+    this.setState({ [key]: newArray });
   }
 
   assignRoles () {
