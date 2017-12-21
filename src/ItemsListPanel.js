@@ -54,7 +54,7 @@ class ItemsListPanel extends React.Component {
         {this.state.editing
           ? <EditableList items={this.props.items} handleItemChange={this.handleItemChange} handleItemSwap={this.handleItemSwap} />
           : <TogglableList items={this.props.items} label={this.props.label} handleItemChange={this.handleItemChange} />}
-        <CelledPanelSegment>
+        <CelledPanelSegment attached='bottom'>
           <EditButton
             editing={this.state.editing}
             disabled={this.props.items.length === 0 || this.props.items.some(item => item.value.length === 0)}

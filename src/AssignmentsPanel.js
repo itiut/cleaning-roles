@@ -24,7 +24,7 @@ function AssignmentsList (props) {
     <AssignmentsListItem key={item.id} userName={item.value} roleName={item.assignment ? item.assignment.value : ''} />
   ));
   return (
-    <CelledPanelTable celled>
+    <CelledPanelTable attached='bottom' celled>
       {listItems}
     </CelledPanelTable>
   );
@@ -34,7 +34,7 @@ function AssignmentsPanel (props) {
   return (
     <React.Fragment>
       <CelledPanelHeader content='割り当て' icon='shuffle' />
-      <CelledPanelSegment>
+      <CelledPanelSegment attached={(props.assignments.length === 0) ? 'bottom' : undefined }>
         <Button primary size='large' disabled={!props.canAssign} onClick={props.assignHandler}>実行</Button>
       </CelledPanelSegment>
       <AssignmentsList items={props.assignments} />
