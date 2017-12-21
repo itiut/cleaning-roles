@@ -17,7 +17,7 @@ function RolesPanel (props) {
           <Statistic.Label>コ</Statistic.Label>
         </Statistic>
       </Segment>
-      <TogglableList items={props.roles} handleItemChange={(index, newElem) => props.handleItemChange('roles', props.roles, index, newElem)} />
+      <TogglableList items={props.roles} handleItemChange={(index, newElem) => props.handleItemChange('roles', index, newElem)} />
     </React.Fragment>
   );
 }

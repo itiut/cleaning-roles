@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Grid, Header } from 'semantic-ui-react';
+import shortid from 'shortid';
 import AssignmentsPanel from './AssignmentsPanel';
 import RolesPanel from './RolesPanel';
 import StepPanel from './StepPanel';
@@ -7,17 +8,17 @@ import UsersPanel from './UsersPanel';
 import './App.css';
 
 const roles = [
-  { id: 1, name: 'ゴミ捨て' },
-  { id: 2, name: 'ゴミ袋設置' },
-  { id: 3, name: 'テーブル拭き' },
+  { id: shortid.generate(), value: 'ゴミ捨て' },
+  { id: shortid.generate(), value: 'ゴミ袋設置' },
+  { id: shortid.generate(), value: 'テーブル拭き' },
 ];
 
 const users = [
-  { id: 1, name: 'Aさん' },
-  { id: 2, name: 'Bさん' },
-  { id: 3, name: 'Cさん' },
-  { id: 4, name: 'Dさん' },
-  { id: 5, name: 'Eさん' }
+  { id: shortid.generate(), value: 'A' },
+  { id: shortid.generate(), value: 'B' },
+  { id: shortid.generate(), value: 'C' },
+  { id: shortid.generate(), value: 'D' },
+  { id: shortid.generate(), value: 'E' }
 ];
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
     };
     this.assignRoles = this.assignRoles.bind(this);
     this.handleItemChange = this.handleItemChange.bind(this);
+    this.handleItemSwap = this.handleItemSwap.bind(this);
   }
 
   get checkedRoles () {
@@ -39,9 +41,30 @@ class App extends Component {
     return this.state.users.filter(user => user.checked);
   }
 
-  handleItemChange (key, array, index, newElem) {
-    const newArray = array.slice();
-    newArray.splice(index, 1, newElem);
+  handleItemChange (key, index, newElem) {
+    const newArray = this.state[key].slice();
+    if (newElem) {
+      // update or add
+      if (!newElem.id) {
+        // add
+        newElem.id = shortid.generate();
+      }
+      newArray.splice(index, 1, newElem);
+    } else {
+      // delete
+      newArray.splice(index, 1);
+    }
+    this.setState(prevState => ({
+      [key]: newArray
+    }));
+  }
+
+  handleItemSwap (key, i, j) {
+    if (i < 0 || j >= this.state[key].length) {
+      return;
+    }
+    const newArray = this.state[key].slice();
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]]
     this.setState(prevState => ({
       [key]: newArray
     }));
@@ -84,7 +107,7 @@ class App extends Component {
         <Grid centered columns={3}>
           <Grid.Row centered>
             <Grid.Column>
-              <UsersPanel users={this.state.users} nCheckedUsers={nCheckedUsers} handleItemChange={this.handleItemChange} />
+              <UsersPanel users={this.state.users} nCheckedUsers={nCheckedUsers} handleItemChange={this.handleItemChange} handleItemSwap={this.handleItemSwap} />
             </Grid.Column>
             <Grid.Column>
               <RolesPanel roles={this.state.roles} nCheckedRoles={nCheckedRoles} nCheckedUsers={nCheckedUsers} nMaxRoles={nCheckedUsers} handleItemChange={this.handleItemChange} />
