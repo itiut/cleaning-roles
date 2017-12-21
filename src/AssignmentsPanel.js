@@ -35,7 +35,7 @@ function AssignmentsPanel (props) {
     <React.Fragment>
       <CelledPanelHeader content='割り当て' icon='shuffle' />
       <CelledPanelSegment attached={(props.assignments.length === 0) ? 'bottom' : undefined }>
-        <Button primary size='large' disabled={!props.canAssign} onClick={props.assignHandler}>実行</Button>
+        <Button primary size='large' disabled={!props.canAssign} onClick={props.handleAssign}>実行</Button>
       </CelledPanelSegment>
       <AssignmentsList items={props.assignments} />
     </React.Fragment>

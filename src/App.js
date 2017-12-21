@@ -97,7 +97,7 @@ class App extends React.Component {
               />
             </Grid.Column>
             <Grid.Column>
-              <AssignmentsPanel assignments={this.state.assignments} canAssign={canAssign} assignHandler={this.assignRoles} />
+              <AssignmentsPanel assignments={this.state.assignments} canAssign={canAssign} handleAssign={this.assignRoles} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
