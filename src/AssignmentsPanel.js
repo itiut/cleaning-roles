@@ -6,10 +6,10 @@ function AssignmentsListItem (props) {
   return (
     <Table.Row>
       <Table.Cell>
-        {props.userName} さん
+        {props.user} さん
       </Table.Cell>
       <Table.Cell>
-        {props.roleName}
+        {props.role}
       </Table.Cell>
     </Table.Row>
   );
@@ -21,7 +21,7 @@ function AssignmentsList (props) {
   }
 
   const listItems = props.items.map((item, index) => (
-    <AssignmentsListItem key={item.id} userName={item.value} roleName={item.assignment ? item.assignment.value : ''} />
+    <AssignmentsListItem key={item.id} user={item.user} role={item.role} />
   ));
   return (
     <CelledPanelTable attached='bottom' celled>

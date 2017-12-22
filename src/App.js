@@ -59,13 +59,14 @@ class App extends React.Component {
       return;
     }
     while (checkedRoles.length < checkedUsers.length) {
-      checkedRoles.push(null);
+      checkedRoles.push({ value: '' });
     }
-    checkedUsers.forEach(user => {
+    const assignments = checkedUsers.map(({ id, value }) => {
       const i = Math.floor(Math.random() * checkedRoles.length);
-      user.assignment = checkedRoles.splice(i, 1)[0];
+      const role = checkedRoles.splice(i, 1)[0];
+      return { id, user: value, role: role.value };
     });
-    this.setState({ assignments: checkedUsers });
+    this.setState({ assignments });
   }
 
   render () {
