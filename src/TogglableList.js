@@ -29,7 +29,7 @@ function TogglableList (props) {
       {...item}
       index={index + 1}
       label={props.label}
-      onClick={e => props.handleItemChange(index, { ...item, checked: !item.checked })} />
+      onClick={e => props.changeItem(index, { ...item, checked: !item.checked })} />
   ));
   return (
     <CelledPanelTable selectable>

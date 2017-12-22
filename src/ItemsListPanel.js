@@ -27,13 +27,8 @@ class ItemsListPanel extends React.Component {
     this.state = {
       editing: false
     };
-    this.handleItemChange = this.handleItemChange.bind(this);
     this.handleItemSwap = this.handleItemSwap.bind(this);
     this.toggleEditing = this.toggleEditing.bind(this);
-  }
-
-  handleItemChange (index, newElem) {
-    this.props.handleItemChange(this.props.type, index, newElem);
   }
 
   handleItemSwap (i, j) {
@@ -52,8 +47,8 @@ class ItemsListPanel extends React.Component {
           <CheckedCount {...this.props.checkedCount} value={checkedItems(this.props.items).length} />
         </CelledPanelSegment>
         {this.state.editing
-          ? <EditableList items={this.props.items} handleItemChange={this.handleItemChange} handleItemSwap={this.handleItemSwap} />
-          : <TogglableList items={this.props.items} label={this.props.label} handleItemChange={this.handleItemChange} />}
+          ? <EditableList items={this.props.items} changeItem={this.props.changeItem} handleItemSwap={this.handleItemSwap} />
+          : <TogglableList items={this.props.items} label={this.props.label} changeItem={this.props.changeItem} />}
         <CelledPanelSegment attached='bottom'>
           <EditButton
             editing={this.state.editing}

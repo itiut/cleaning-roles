@@ -54,10 +54,10 @@ function EditableList (props) {
       error={item.value.length === 0}
       canMoveUp={index > 0}
       canMoveDown={index < props.items.length - 1}
-      onChange={(e, data) => props.handleItemChange(index, { ...item, value: data.value })}
+      onChange={(e, data) => props.changeItem(index, { ...item, value: data.value })}
       handleItemMoveUp={e => props.handleItemSwap(index - 1, index)}
       handleItemMoveDown={e => props.handleItemSwap(index, index + 1)}
-      handleItemDelete={e => props.handleItemChange(index)}
+      handleItemDelete={e => props.changeItem(index)}
     />
   ));
   const list = props.items.length === 0 ? null : (
@@ -69,7 +69,7 @@ function EditableList (props) {
     <React.Fragment>
       {list}
       <CelledPanelSegment>
-        <AddingInput handleItemAdd={value => props.handleItemChange(props.items.length, { value })} />
+        <AddingInput handleItemAdd={value => props.changeItem(props.items.length, { value })} />
       </CelledPanelSegment>
     </React.Fragment>
   );

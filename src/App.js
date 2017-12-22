@@ -16,7 +16,6 @@ class App extends React.Component {
       assignments: []
     };
     this.assignRoles = this.assignRoles.bind(this);
-    this.handleItemChange = this.handleItemChange.bind(this);
     this.handleItemSwap = this.handleItemSwap.bind(this);
   }
 
@@ -32,7 +31,7 @@ class App extends React.Component {
     return encodeItems(window.location, this.state.roles, this.state.users);
   }
 
-  handleItemChange (key, index, newItem) {
+  changeItem (key, index, newItem) {
     const newArray = this.state[key];
     if (newItem) {
       // update or add
@@ -81,10 +80,10 @@ class App extends React.Component {
         <Grid columns={3}>
           <Grid.Row>
             <Grid.Column>
-              <UsersPanel items={this.state.users} handleItemChange={this.handleItemChange} handleItemSwap={this.handleItemSwap} />
+              <UsersPanel items={this.state.users} changeItem={this.changeItem.bind(this, 'users')} handleItemSwap={this.handleItemSwap} />
             </Grid.Column>
             <Grid.Column>
-              <RolesPanel items={this.state.roles} handleItemChange={this.handleItemChange} handleItemSwap={this.handleItemSwap}
+              <RolesPanel items={this.state.roles} changeItem={this.changeItem.bind(this, 'roles')} handleItemSwap={this.handleItemSwap}
                 error={nCheckedRoles > nCheckedUsers}
               />
             </Grid.Column>
