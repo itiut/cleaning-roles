@@ -1,6 +1,26 @@
 import shortid from 'shortid';
 import { decodeParams, encodeParams } from './url';
 
+function sample (array) {
+  const index = Math.floor(Math.random() * array.length);
+  return array.splice(index, 1)[0];
+}
+
+function assign (checkedUsers, checkedRoles) {
+  if (checkedRoles.length > checkedUsers.length) {
+    return null;
+  }
+
+  while (checkedRoles.length < checkedUsers.length) {
+    checkedRoles.push({ value: '' });
+  }
+  const assignments = {};
+  for (const user of checkedUsers) {
+    assignments[user.id] = sample(checkedRoles).value;
+  }
+  return assignments;
+}
+
 function checkedItems (items) {
   return items.filter(item => item.checked);
 }
@@ -31,4 +51,4 @@ function normalizeItem (item) {
   }
 }
 
-export { checkedItems, decodeItems, encodeItems, normalizeItem };
+export { assign, checkedItems, decodeItems, encodeItems, normalizeItem };

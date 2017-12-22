@@ -2,6 +2,15 @@ import React from 'react';
 import { Button, Table } from 'semantic-ui-react';
 import { CelledPanelHeader, CelledPanelSegment, CelledPanelTable } from './CelledPanel';
 
+function AssignButton (props) {
+  return (
+    <Button.Group size='large' color={props.canReset ? 'green' : 'blue'}>
+      <Button content={props.canReset ? '完了' : '実行'} disabled={!props.canAssign} onClick={props.onAssign} />
+      <Button icon='repeat' disabled={!props.canReset} onClick={props.onReset} />
+    </Button.Group>
+  );
+}
+
 function AssignmentsListItem (props) {
   return (
     <Table.Row>
@@ -21,7 +30,7 @@ function AssignmentsList (props) {
   }
 
   const listItems = props.items.map((item, index) => (
-    <AssignmentsListItem key={item.id} user={item.user} role={item.role} />
+    <AssignmentsListItem key={item.id} user={item.value} role={props.assignments[item.id]} />
   ));
   return (
     <CelledPanelTable attached='bottom' celled>
@@ -30,16 +39,44 @@ function AssignmentsList (props) {
   );
 }
 
-function AssignmentsPanel (props) {
-  return (
-    <React.Fragment>
-      <CelledPanelHeader content='割り当て' icon='shuffle' />
-      <CelledPanelSegment attached={(props.assignments.length === 0) ? 'bottom' : undefined }>
-        <Button primary size='large' disabled={!props.canAssign} onClick={props.assignRoles}>実行</Button>
-      </CelledPanelSegment>
-      <AssignmentsList items={props.assignments} />
-    </React.Fragment>
-  );
+class AssignmentsPanel extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      assigned: false
+    };
+  }
+
+  shouldComponentUpdate (nextProps, nextState) {
+    return !(this.state.assigned && nextState.assigned);
+  }
+
+  assign () {
+    this.props.assign();
+    this.setState({ assigned: true });
+  }
+
+  reset () {
+    this.props.reset();
+    this.setState({ assigned: false });
+  }
+
+  render () {
+    return (
+      <React.Fragment>
+        <CelledPanelHeader content='割り当て' icon='shuffle' />
+        <CelledPanelSegment attached={(this.props.items.length === 0) ? 'bottom' : undefined}>
+          <AssignButton
+            canAssign={this.props.canAssign && !this.state.assigned}
+            canReset={this.state.assigned}
+            onAssign={this.assign.bind(this)}
+            onReset={this.reset.bind(this)}
+          />
+        </CelledPanelSegment>
+        <AssignmentsList items={this.props.items} assignments={this.props.assignments} />
+      </React.Fragment>
+    );
+  }
 }
 
 export default AssignmentsPanel;

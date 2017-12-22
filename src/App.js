@@ -4,16 +4,15 @@ import AssignmentsPanel from './AssignmentsPanel';
 import { RolesPanel, UsersPanel } from './ItemsListPanel';
 import StepPanel from './StepPanel';
 import UrlPanel from './UrlPanel';
-import { checkedItems, decodeItems, encodeItems, normalizeItem } from './model';
+import { assign, checkedItems, decodeItems, encodeItems, normalizeItem } from './model';
 import './App.css';
 
 class App extends React.Component {
   constructor (props) {
     super(props);
-    const { roles, users } = decodeItems(window.location);
     this.state = {
-      roles, users,
-      assignments: []
+      ...decodeItems(window.location),
+      assignments: {}
     };
   }
 
@@ -52,20 +51,14 @@ class App extends React.Component {
   }
 
   assignRoles () {
-    const checkedRoles = this.checkedRoles;
-    const checkedUsers = this.checkedUsers;
-    if (checkedRoles.length > checkedUsers.length) {
-      return;
+    const assignments = assign(this.checkedUsers, this.checkedRoles);
+    if (assignments) {
+      this.setState({ assignments });
     }
-    while (checkedRoles.length < checkedUsers.length) {
-      checkedRoles.push({ value: '' });
-    }
-    const assignments = checkedUsers.map(({ id, value }) => {
-      const i = Math.floor(Math.random() * checkedRoles.length);
-      const role = checkedRoles.splice(i, 1)[0];
-      return { id, user: value, role: role.value };
-    });
-    this.setState({ assignments });
+  }
+
+  resetAssignments () {
+    this.setState({ assignments: {} });
   }
 
   render () {
@@ -87,7 +80,13 @@ class App extends React.Component {
               />
             </Grid.Column>
             <Grid.Column>
-              <AssignmentsPanel assignments={this.state.assignments} canAssign={canAssign} assignRoles={this.assignRoles.bind(this)} />
+              <AssignmentsPanel
+                items={this.checkedUsers}
+                assignments={this.state.assignments}
+                canAssign={canAssign}
+                assign={this.assignRoles.bind(this)}
+                reset={this.resetAssignments.bind(this)}
+              />
             </Grid.Column>
           </Grid.Row>
         </Grid>
