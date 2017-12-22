@@ -27,7 +27,6 @@ class ItemsListPanel extends React.Component {
     this.state = {
       editing: false
     };
-    this.toggleEditing = this.toggleEditing.bind(this);
   }
 
   toggleEditing () {
@@ -48,7 +47,7 @@ class ItemsListPanel extends React.Component {
           <EditButton
             editing={this.state.editing}
             disabled={this.props.items.length === 0 || this.props.items.some(item => item.value.length === 0)}
-            onClick={this.toggleEditing}
+            onClick={this.toggleEditing.bind(this)}
           />
         </CelledPanelSegment>
       </React.Fragment>
