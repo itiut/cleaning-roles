@@ -1,9 +1,13 @@
 {
   "name": "cleaning-roles",
   "version": "0.1.0",
-  "private": true,
+  "author": {
+    "name": "Yuichi Tanikawa",
+    "email": "t.yuichi111@gmail.com"
+  },
   "dependencies": {
     "copy-to-clipboard": "^3.0.8",
+    "gh-pages": "^1.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
@@ -11,10 +15,14 @@
     "semantic-ui-react": "^0.77.1",
     "shortid": "^2.2.8"
   },
+  "homepage": "https://itiut.github.io/cleaning-roles",
+  "repository": "github:itiut/cleaning-roles",
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "deploy": "gh-pages -d build",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "start": "react-scripts start",
+    "test": "react-scripts test --env=jsdom"
   }
 }
