@@ -82,7 +82,7 @@ class App extends React.Component {
               <UsersPanel items={this.state.users} changeItem={this.changeItem.bind(this, 'users')} swapItems={this.swapItems.bind(this, 'users')} />
             </Grid.Column>
             <Grid.Column>
-              <RolesPanel items={this.state.roles} changeItem={this.changeItem.bind(this, 'roles')} swapItems={this.swapItems.bind(this, 'users')}
+              <RolesPanel items={this.state.roles} changeItem={this.changeItem.bind(this, 'roles')} swapItems={this.swapItems.bind(this, 'roles')}
                 error={nCheckedRoles > nCheckedUsers}
               />
             </Grid.Column>
