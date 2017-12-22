@@ -67,7 +67,7 @@ class App extends React.Component {
     const canAssign = nCheckedRoles > 0 && nCheckedUsers > 0 && nCheckedRoles <= nCheckedUsers;
     return (
       <Container>
-        <Header as='h1' content='掃除の割り当て' dividing />
+        <Header as='h1' content='掃除の分担' dividing />
         <StepPanel />
         <Grid columns={3}>
           <Grid.Row>
