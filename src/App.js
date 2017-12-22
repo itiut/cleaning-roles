@@ -84,6 +84,7 @@ class App extends React.Component {
                 items={this.checkedUsers}
                 assignments={this.state.assignments}
                 canAssign={canAssign}
+                error={nCheckedRoles > nCheckedUsers}
                 assign={this.assignRoles.bind(this)}
                 reset={this.resetAssignments.bind(this)}
               />

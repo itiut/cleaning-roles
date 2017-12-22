@@ -4,9 +4,9 @@ import { CelledPanelHeader, CelledPanelSegment, CelledPanelTable } from './Celle
 
 function AssignButton (props) {
   return (
-    <Button.Group size='large' color={props.canReset ? 'green' : 'blue'}>
-      <Button content={props.canReset ? '完了' : '実行'} disabled={!props.canAssign} onClick={props.onAssign} />
-      <Button icon='repeat' disabled={!props.canReset} onClick={props.onReset} />
+    <Button.Group size='large' color={props.color || (props.assigned ? 'green' : 'blue')}>
+      <Button content='実行' disabled={!props.canAssign} onClick={props.onAssign} />
+      <Button icon='repeat' disabled={!props.assigned} onClick={props.onReset} />
     </Button.Group>
   );
 }
@@ -67,8 +67,9 @@ class AssignmentsPanel extends React.Component {
         <CelledPanelHeader content='割り当て' icon='shuffle' />
         <CelledPanelSegment attached={(this.props.items.length === 0) ? 'bottom' : undefined}>
           <AssignButton
+            assigned={this.state.assigned}
             canAssign={this.props.canAssign && !this.state.assigned}
-            canReset={this.state.assigned}
+            color={this.props.error ? 'red' : undefined}
             onAssign={this.assign.bind(this)}
             onReset={this.reset.bind(this)}
           />
