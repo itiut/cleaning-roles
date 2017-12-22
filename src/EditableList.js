@@ -55,8 +55,8 @@ function EditableList (props) {
       canMoveUp={index > 0}
       canMoveDown={index < props.items.length - 1}
       onChange={(e, data) => props.changeItem(index, { ...item, value: data.value })}
-      handleItemMoveUp={e => props.handleItemSwap(index - 1, index)}
-      handleItemMoveDown={e => props.handleItemSwap(index, index + 1)}
+      handleItemMoveUp={e => props.swapItems(index - 1, index)}
+      handleItemMoveDown={e => props.swapItems(index, index + 1)}
       handleItemDelete={e => props.changeItem(index)}
     />
   ));

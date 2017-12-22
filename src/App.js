@@ -16,7 +16,6 @@ class App extends React.Component {
       assignments: []
     };
     this.assignRoles = this.assignRoles.bind(this);
-    this.handleItemSwap = this.handleItemSwap.bind(this);
   }
 
   get checkedRoles () {
@@ -44,7 +43,7 @@ class App extends React.Component {
     this.setState({ [key]: newArray });
   }
 
-  handleItemSwap (key, i, j) {
+  swapItems (key, i, j) {
     if (i < 0 || j >= this.state[key].length) {
       return;
     }
@@ -80,10 +79,10 @@ class App extends React.Component {
         <Grid columns={3}>
           <Grid.Row>
             <Grid.Column>
-              <UsersPanel items={this.state.users} changeItem={this.changeItem.bind(this, 'users')} handleItemSwap={this.handleItemSwap} />
+              <UsersPanel items={this.state.users} changeItem={this.changeItem.bind(this, 'users')} swapItems={this.swapItems.bind(this, 'users')} />
             </Grid.Column>
             <Grid.Column>
-              <RolesPanel items={this.state.roles} changeItem={this.changeItem.bind(this, 'roles')} handleItemSwap={this.handleItemSwap}
+              <RolesPanel items={this.state.roles} changeItem={this.changeItem.bind(this, 'roles')} swapItems={this.swapItems.bind(this, 'users')}
                 error={nCheckedRoles > nCheckedUsers}
               />
             </Grid.Column>

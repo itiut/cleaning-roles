@@ -27,12 +27,7 @@ class ItemsListPanel extends React.Component {
     this.state = {
       editing: false
     };
-    this.handleItemSwap = this.handleItemSwap.bind(this);
     this.toggleEditing = this.toggleEditing.bind(this);
-  }
-
-  handleItemSwap (i, j) {
-    this.props.handleItemSwap(this.props.type, i, j);
   }
 
   toggleEditing () {
@@ -47,7 +42,7 @@ class ItemsListPanel extends React.Component {
           <CheckedCount {...this.props.checkedCount} value={checkedItems(this.props.items).length} />
         </CelledPanelSegment>
         {this.state.editing
-          ? <EditableList items={this.props.items} changeItem={this.props.changeItem} handleItemSwap={this.handleItemSwap} />
+          ? <EditableList items={this.props.items} changeItem={this.props.changeItem} swapItems={this.props.swapItems} />
           : <TogglableList items={this.props.items} label={this.props.label} changeItem={this.props.changeItem} />}
         <CelledPanelSegment attached='bottom'>
           <EditButton
@@ -65,7 +60,6 @@ function RolesPanel (props) {
   return (
     <ItemsListPanel
       {...props}
-      type='roles'
       header={{
         content: '役割',
         icon: 'wrench'
@@ -82,7 +76,6 @@ function UsersPanel (props) {
   return (
     <ItemsListPanel
       {...props}
-      type='users'
       header={{
         content: '掃除する人',
         icon: 'user'
