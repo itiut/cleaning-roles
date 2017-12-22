@@ -12,7 +12,9 @@ function decodeParams (location, keys) {
 }
 
 function normalizeValuePairs (pairs) {
-  pairs.forEach(pair => pair[1] = pair[1].trim());
+  for (const pair of pairs) {
+    pair[1] = pair[1].trim();
+  }
   return pairs.filter(pair => pair[1].length > 0);
 }
 
