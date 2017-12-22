@@ -18,7 +18,7 @@ function normalizeValuePairs (pairs) {
 
 function encodeParams (location, valuePairs) {
   const params = new URLSearchParams(normalizeValuePairs(valuePairs));
-  const url = new URL('?' + params.toString(), location.origin);
+  const url = new URL('?' + params.toString(), location.origin + location.pathname);
   return url.toString();
 }
 
