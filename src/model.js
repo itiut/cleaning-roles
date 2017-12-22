@@ -1,4 +1,4 @@
-import Shortid from 'shortid';
+import shortid from 'shortid';
 import { decodeParams, encodeParams } from './url';
 
 function checkedItems (items) {
@@ -11,7 +11,7 @@ function decodeItems (location) {
   for (const [key, values] of Object.entries(params)) {
     out[key] = values.map(value => ({
       value,
-      id: Shortid.generate()
+      id: shortid.generate()
     }));
   }
   return out;
@@ -27,7 +27,7 @@ function encodeItems (location, roles, users) {
 
 function normalizeItem (item) {
   if (!item.id) {
-    item.id = Shortid.generate();
+    item.id = shortid.generate();
   }
 }
 
