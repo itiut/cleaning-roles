@@ -8,24 +8,22 @@ class AddingInput extends React.Component {
     this.state = {
       value: ''
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange (event, data) {
+  update (event, data) {
     this.setState({ value: data.value });
   }
 
-  handleSubmit (event) {
-    this.props.handleItemAdd(this.state.value.trim());
+  submit (event) {
+    this.props.submit(this.state.value.trim());
     this.setState({ value: '' });
   }
 
   render () {
     return (
-      <Input action fluid value={this.state.value} onChange={this.handleChange}>
+      <Input action fluid value={this.state.value} onChange={this.update.bind(this)}>
         <input />
-        <Button content='追加' positive disabled={this.state.value.length === 0} onClick={this.handleSubmit} />
+        <Button content='追加' positive disabled={this.state.value.length === 0} onClick={this.submit.bind(this)} />
       </Input>
     );
   }
@@ -37,9 +35,9 @@ function EditableListItem (props) {
       <Table.Cell width={16}>
         <Input action fluid value={props.value} error={props.error} onChange={props.onChange} >
           <input />
-          <Button size='small' icon='arrow up' disabled={!props.canMoveUp} onClick={props.handleItemMoveUp} />
-          <Button size='small' icon='arrow down' disabled={!props.canMoveDown} onClick={props.handleItemMoveDown} />
-          <Button size='small' icon='delete' negative onClick={props.handleItemDelete} />
+          <Button size='small' icon='arrow up' disabled={!props.canMoveUp} onClick={props.onMoveUp} />
+          <Button size='small' icon='arrow down' disabled={!props.canMoveDown} onClick={props.onMoveDown} />
+          <Button size='small' icon='delete' negative onClick={props.onDelete} />
         </Input>
       </Table.Cell>
     </Table.Row>
@@ -55,9 +53,9 @@ function EditableList (props) {
       canMoveUp={index > 0}
       canMoveDown={index < props.items.length - 1}
       onChange={(e, data) => props.changeItem(index, { ...item, value: data.value })}
-      handleItemMoveUp={e => props.swapItems(index - 1, index)}
-      handleItemMoveDown={e => props.swapItems(index, index + 1)}
-      handleItemDelete={e => props.changeItem(index)}
+      onMoveUp={e => props.swapItems(index - 1, index)}
+      onMoveDown={e => props.swapItems(index, index + 1)}
+      onDelete={e => props.changeItem(index)}
     />
   ));
   const list = props.items.length === 0 ? null : (
@@ -69,7 +67,7 @@ function EditableList (props) {
     <React.Fragment>
       {list}
       <CelledPanelSegment>
-        <AddingInput handleItemAdd={value => props.changeItem(props.items.length, { value })} />
+        <AddingInput submit={value => props.changeItem(props.items.length, { value })} />
       </CelledPanelSegment>
     </React.Fragment>
   );
