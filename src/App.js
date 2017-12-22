@@ -15,7 +15,6 @@ class App extends React.Component {
       roles, users,
       assignments: []
     };
-    this.assignRoles = this.assignRoles.bind(this);
   }
 
   get checkedRoles () {
@@ -88,7 +87,7 @@ class App extends React.Component {
               />
             </Grid.Column>
             <Grid.Column>
-              <AssignmentsPanel assignments={this.state.assignments} canAssign={canAssign} handleAssign={this.assignRoles} />
+              <AssignmentsPanel assignments={this.state.assignments} canAssign={canAssign} assignRoles={this.assignRoles.bind(this)} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
