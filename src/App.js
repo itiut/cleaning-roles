@@ -4,54 +4,49 @@ import AssignmentsPanel from './AssignmentsPanel';
 import { RolesPanel, UsersPanel } from './ItemsListPanel';
 import StepPanel from './StepPanel';
 import UrlPanel from './UrlPanel';
-import { assign, checkedItems, decodeItems, encodeItems, normalizeItem } from './model';
+import { encodeParams, decodeParams } from './url';
+import Items from './Items';
 import './App.css';
+
+const isChecked = item => item.checked;
 
 class App extends React.Component {
   constructor (props) {
     super(props);
+    const params = decodeParams(window.location, ['role', 'user']);
+    this.roles = new Items('role', params['role']);
+    this.users = new Items('user', params['user']);
     this.state = {
-      ...decodeItems(window.location),
+      roles: this.roles.data,
+      users: this.users.data,
       assignments: {}
     };
+
+    const itemsFn = (fnName) => (
+      (key, ...args) => {
+        const items = this[key];
+        items[fnName](...args);
+        this.setState({ [key]: items.data });
+      }
+    );
+    this.changeItem = itemsFn('change');
+    this.swapItems = itemsFn('swap');
   }
 
   get checkedRoles () {
-    return checkedItems(this.state.roles);
+    return this.state.roles.filter(isChecked);
   }
 
   get checkedUsers () {
-    return checkedItems(this.state.users);
+    return this.state.users.filter(isChecked);
   }
 
   get currentUrl () {
-    return encodeItems(window.location, this.state.roles, this.state.users);
-  }
-
-  changeItem (key, index, newItem) {
-    const newArray = this.state[key];
-    if (newItem) {
-      // update or add
-      normalizeItem(newItem);
-      newArray.splice(index, 1, newItem);
-    } else {
-      // delete
-      newArray.splice(index, 1);
-    }
-    this.setState({ [key]: newArray });
-  }
-
-  swapItems (key, i, j) {
-    if (i < 0 || j >= this.state[key].length) {
-      return;
-    }
-    const newArray = this.state[key];
-    [newArray[i], newArray[j]] = [newArray[j], newArray[i]]
-    this.setState({ [key]: newArray });
+    return encodeParams(window.location, [...this.roles.kvPairs(), ...this.users.kvPairs()]);
   }
 
   assignRoles () {
-    const assignments = assign(this.checkedUsers, this.checkedRoles);
+    const assignments = this.users.randomMapping(this.roles, isChecked);
     if (assignments) {
       this.setState({ assignments });
     }
@@ -72,11 +67,20 @@ class App extends React.Component {
         <Grid columns={3} stackable>
           <Grid.Row>
             <Grid.Column>
-              <UsersPanel items={this.state.users} changeItem={this.changeItem.bind(this, 'users')} swapItems={this.swapItems.bind(this, 'users')} />
+              <UsersPanel
+                items={this.state.users}
+                nCheckedItems={nCheckedUsers}
+                changeItem={this.changeItem.bind(this, 'users')}
+                swapItems={this.swapItems.bind(this, 'users')}
+              />
             </Grid.Column>
             <Grid.Column>
-              <RolesPanel items={this.state.roles} changeItem={this.changeItem.bind(this, 'roles')} swapItems={this.swapItems.bind(this, 'roles')}
+              <RolesPanel
+                items={this.state.roles}
+                nCheckedItems={nCheckedRoles}
                 error={nCheckedRoles > nCheckedUsers}
+                changeItem={this.changeItem.bind(this, 'roles')}
+                swapItems={this.swapItems.bind(this, 'roles')}
               />
             </Grid.Column>
             <Grid.Column>

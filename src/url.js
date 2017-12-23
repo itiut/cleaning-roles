@@ -6,20 +6,20 @@ function decodeParams (location, keys) {
   const params = new URLSearchParams(location.search);
   const out = {};
   for (const key of keys) {
-    out[key + 's'] = normalizeValues(params.getAll(key));
+    out[key] = normalizeValues(params.getAll(key));
   }
   return out;
 }
 
-function normalizeValuePairs (pairs) {
+function normalizeKvPairs (pairs) {
   for (const pair of pairs) {
     pair[1] = pair[1].trim();
   }
   return pairs.filter(pair => pair[1].length > 0);
 }
 
-function encodeParams (location, valuePairs) {
-  const params = new URLSearchParams(normalizeValuePairs(valuePairs));
+function encodeParams (location, kvPairs) {
+  const params = new URLSearchParams(normalizeKvPairs(kvPairs));
   const url = new URL('?' + params.toString(), location.origin + location.pathname);
   return url.toString();
 }

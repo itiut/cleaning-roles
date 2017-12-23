@@ -3,7 +3,6 @@ import { Button, Statistic } from 'semantic-ui-react';
 import EditableList from './EditableList';
 import TogglableList from './TogglableList';
 import { CelledPanelHeader, CelledPanelSegment } from './CelledPanel';
-import { checkedItems } from './model';
 
 function EditButton (props) {
   if (props.editing) {
@@ -41,7 +40,7 @@ class ItemsListPanel extends React.Component {
       <React.Fragment>
         <CelledPanelHeader {...this.props.header} />
         <CelledPanelSegment>
-          <CheckedCount {...this.props.checkedCount} value={checkedItems(this.props.items).length} />
+          <CheckedCount {...this.props.checkedCount} />
         </CelledPanelSegment>
         {this.state.editing
           ? <EditableList items={this.props.items} changeItem={this.props.changeItem} swapItems={this.props.swapItems} />
@@ -69,7 +68,8 @@ function RolesPanel (props) {
       }}
       checkedCount={{
         color: props.error ? 'red' : null,
-        label: 'コ'
+        label: 'コ',
+        value: props.nCheckedItems
       }}
     />
   );
@@ -85,7 +85,8 @@ function UsersPanel (props) {
       }}
       label='さん'
       checkedCount={{
-        label: '人'
+        label: '人',
+        value: props.nCheckedItems
       }}
     />
   );
