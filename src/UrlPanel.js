@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Header, Input, Modal, Responsive } from 'semantic-ui-react';
 import copy from 'copy-to-clipboard';
 import qrcode from 'qrcode';
+import Popup from 'semantic-ui-react/dist/commonjs/modules/Popup/Popup';
 
 function ResponsiveButton (props) {
   return (
@@ -73,7 +74,12 @@ function UrlPanel (props) {
       <Header as='h2' content='現在のデータのURL' dividing size='small' icon='linkify' />
       <Input action fluid value={props.value} onClick={e => e.target.select()}>
         <input />
-        <ResponsiveButton color='teal' content='コピー' icon='copy' onClick={e => copy(props.value)} />
+        <Popup
+          content='コピーしました'
+          hideOnScroll
+          position='top center'
+          trigger={<ResponsiveButton color='teal' content='コピー' icon='copy' onClick={e => copy(props.value)} />}
+        />
         <QRCodeModal trigger={<ResponsiveButton color='teal' content='QRコード' icon='qrcode' />} value={props.value} />
       </Input>
     </React.Fragment>
