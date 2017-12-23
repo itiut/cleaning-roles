@@ -15,14 +15,18 @@ class AddingInput extends React.Component {
   }
 
   submit (event) {
-    this.props.submit(this.state.value.trim());
+    const value = this.state.value.trim();
+    if (value.length === 0) {
+      return;
+    }
+    this.props.submit(value);
     this.setState({ value: '' });
   }
 
   render () {
     return (
       <Input action fluid value={this.state.value} onChange={this.update.bind(this)}>
-        <input />
+        <input onKeyPress={e => e.key === 'Enter' ? this.submit(e) : false} />
         <Button content='追加' positive disabled={this.state.value.length === 0} onClick={this.submit.bind(this)} />
       </Input>
     );
@@ -35,9 +39,9 @@ function EditableListItem (props) {
       <Table.Cell width={16}>
         <Input action fluid value={props.value} error={props.error} onChange={props.onChange} >
           <input />
-          <Button size='small' icon='arrow up' disabled={!props.canMoveUp} onClick={props.onMoveUp} />
-          <Button size='small' icon='arrow down' disabled={!props.canMoveDown} onClick={props.onMoveDown} />
-          <Button size='small' icon='delete' negative onClick={props.onDelete} />
+          <Button size='small' tabIndex='-1' icon='arrow up' disabled={!props.canMoveUp} onClick={props.onMoveUp} />
+          <Button size='small' tabIndex='-1' icon='arrow down' disabled={!props.canMoveDown} onClick={props.onMoveDown} />
+          <Button size='small' tabIndex='-1' icon='delete' negative onClick={props.onDelete} />
         </Input>
       </Table.Cell>
     </Table.Row>
