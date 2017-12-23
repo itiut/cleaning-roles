@@ -8,6 +8,7 @@
   "dependencies": {
     "copy-to-clipboard": "^3.0.8",
     "gh-pages": "^1.1.0",
+    "qrcode": "^1.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",

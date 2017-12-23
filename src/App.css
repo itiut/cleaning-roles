@@ -1,8 +1,18 @@
-.ui.container {
+.App {
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
 
 .ui.steps.StepPanel {
   margin-bottom: 2.5rem;
+}
+
+.QRCodeWrapper {
+  text-align: center;
+}
+
+.QRCode {
+  height: auto !important;
+  max-width: 100%;
+  width: auto !important;
 }
