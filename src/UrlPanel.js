@@ -1,7 +1,30 @@
 import React from 'react';
-import { Button, Header, Input, Modal } from 'semantic-ui-react';
+import { Button, Header, Input, Modal, Responsive } from 'semantic-ui-react';
 import copy from 'copy-to-clipboard';
 import qrcode from 'qrcode';
+
+function ResponsiveButton (props) {
+  return (
+    <React.Fragment>
+      <Responsive
+        {...Responsive.onlyMobile}
+        as={Button}
+        color={props.color}
+        icon={props.icon}
+        onClick={props.onClick}
+      />
+      <Responsive
+        as={Button}
+        color={props.color}
+        content={props.content}
+        icon={props.icon}
+        labelPosition='right'
+        minWidth={Responsive.onlyTablet.minWidth}
+        onClick={props.onClick}
+      />
+    </React.Fragment>
+  );
+}
 
 class QRCodeCanvas extends React.Component {
   constructor (props) {
@@ -50,8 +73,8 @@ function UrlPanel (props) {
       <Header as='h2' content='現在のデータのURL' dividing size='small' icon='linkify' />
       <Input action fluid value={props.value} onClick={e => e.target.select()}>
         <input />
-        <Button color='teal' content='コピー' icon='copy' labelPosition='right' onClick={e => copy(props.value)} />
-        <QRCodeModal trigger={<Button color='teal' content='QRコード' icon='qrcode' labelPosition='right' />} value={props.value} />
+        <ResponsiveButton color='teal' content='コピー' icon='copy' onClick={e => copy(props.value)} />
+        <QRCodeModal trigger={<ResponsiveButton color='teal' content='QRコード' icon='qrcode' />} value={props.value} />
       </Input>
     </React.Fragment>
   );

@@ -15,7 +15,7 @@ function CelledPanelSegment ({ attached = true, ...props }) {
 
 function CelledPanelTable ({ attached = true, celled, selectable, ...props }) {
   return (
-    <Table striped {...{ attached, celled, selectable }}>
+    <Table striped unstackable {...{ attached, celled, selectable }}>
       <Table.Body>
         {props.children}
       </Table.Body>

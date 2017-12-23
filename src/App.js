@@ -69,7 +69,7 @@ class App extends React.Component {
       <Container className='App'>
         <Header as='h1' content='掃除の分担' dividing />
         <StepPanel />
-        <Grid columns={3}>
+        <Grid columns={3} stackable>
           <Grid.Row>
             <Grid.Column>
               <UsersPanel items={this.state.users} changeItem={this.changeItem.bind(this, 'users')} swapItems={this.swapItems.bind(this, 'users')} />

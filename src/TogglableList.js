@@ -8,10 +8,10 @@ function TogglableListItem (props) {
       <Table.Cell width={1} textAlign='center'>
         {props.index}.
       </Table.Cell>
-      <Table.Cell width={12}>
+      <Table.Cell width={14}>
         {props.value}{props.label ? ` ${props.label}` : null}
       </Table.Cell>
-      <Table.Cell width={3}>
+      <Table.Cell textAlign='right' width={1}>
         <Checkbox toggle checked={props.checked} />
       </Table.Cell>
     </Table.Row>
