@@ -5,9 +5,14 @@ import { CelledPanelSegment, CelledPanelTable } from './CelledPanel';
 class AddingInput extends React.Component {
   constructor (props) {
     super(props);
+    this.inputRef = null;
     this.state = {
       value: ''
     }
+  }
+
+  componentDidMount () {
+    this.inputRef.focus();
   }
 
   update (event, data) {
@@ -25,7 +30,7 @@ class AddingInput extends React.Component {
 
   render () {
     return (
-      <Input action fluid value={this.state.value} onChange={this.update.bind(this)}>
+      <Input action fluid ref={input => this.inputRef = input} value={this.state.value} onChange={this.update.bind(this)}>
         <input onKeyPress={e => e.key === 'Enter' ? this.submit(e) : false} />
         <Button content='追加' icon='add' positive disabled={this.state.value.length === 0} onClick={this.submit.bind(this)} />
       </Input>
