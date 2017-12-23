@@ -5,7 +5,7 @@ import { CelledPanelHeader, CelledPanelSegment, CelledPanelTable } from './Celle
 function AssignButton (props) {
   return (
     <Button.Group size='large' color={props.color || (props.assigned ? 'green' : 'blue')}>
-      <Button content='実行' disabled={!props.canAssign} onClick={props.onAssign} />
+      <Button content='実行' icon='play' disabled={!props.canAssign} onClick={props.onAssign} />
       <Button icon='repeat' disabled={!props.assigned} onClick={props.onReset} />
     </Button.Group>
   );

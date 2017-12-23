@@ -7,9 +7,12 @@ import { checkedItems } from './model';
 
 function EditButton (props) {
   if (props.editing) {
-    return <Button content='完了' onClick={props.onClick} size='large' primary disabled={props.disabled} />;
+    return <Button content='完了' icon='save' onClick={props.onClick} size='large' disabled={props.disabled} primary />;
   }
-  return <Button content='編集' onClick={props.onClick} size='large' />;
+  if (props.added) {
+    return <Button content='編集' icon='edit' onClick={props.onClick} size='large' />;
+  }
+  return <Button content='追加' icon='add' onClick={props.onClick} size='large' positive />;
 }
 
 function CheckedCount (props) {
@@ -45,6 +48,7 @@ class ItemsListPanel extends React.Component {
           : <TogglableList items={this.props.items} label={this.props.label} changeItem={this.props.changeItem} />}
         <CelledPanelSegment attached='bottom'>
           <EditButton
+            added={this.props.items.length > 0}
             editing={this.state.editing}
             disabled={this.props.items.length === 0 || this.props.items.some(item => item.value.length === 0)}
             onClick={this.toggleEditing.bind(this)}

@@ -27,7 +27,7 @@ class AddingInput extends React.Component {
     return (
       <Input action fluid value={this.state.value} onChange={this.update.bind(this)}>
         <input onKeyPress={e => e.key === 'Enter' ? this.submit(e) : false} />
-        <Button content='追加' positive disabled={this.state.value.length === 0} onClick={this.submit.bind(this)} />
+        <Button content='追加' icon='add' positive disabled={this.state.value.length === 0} onClick={this.submit.bind(this)} />
       </Input>
     );
   }
