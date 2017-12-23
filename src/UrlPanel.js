@@ -18,7 +18,7 @@ function ResponsiveButton (props) {
         color={props.color}
         content={props.content}
         icon={props.icon}
-        labelPosition='right'
+        labelPosition='left'
         minWidth={Responsive.onlyTablet.minWidth}
         onClick={props.onClick}
       />
