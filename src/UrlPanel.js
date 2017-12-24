@@ -1,8 +1,7 @@
 import React from 'react';
-import { Button, Header, Input, Modal, Responsive } from 'semantic-ui-react';
+import { Button, Header, Input, Modal, Popup, Responsive } from 'semantic-ui-react';
 import copy from 'copy-to-clipboard';
 import qrcode from 'qrcode';
-import Popup from 'semantic-ui-react/dist/commonjs/modules/Popup/Popup';
 
 function ResponsiveButton (props) {
   return (
