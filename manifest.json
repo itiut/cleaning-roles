@@ -1,15 +1,20 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "掃除の分担",
+  "name": "掃除の分担",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "48x48 32x32 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "favicon-152.png",
+      "sizes": "152x152",
+      "type": "image/png"
     }
   ],
   "start_url": "./index.html",
-  "display": "standalone",
-  "theme_color": "#000000",
+  "display": "browser",
+  "theme_color": "#1b1c1d",
   "background_color": "#ffffff"
 }
