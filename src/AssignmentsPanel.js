@@ -30,7 +30,11 @@ function AssignmentsList (props) {
   }
 
   const listItems = props.items.map((item, index) => (
-    <AssignmentsListItem key={item.id} user={item.value} role={props.assignments[item.id]} />
+    <AssignmentsListItem
+      key={item.id}
+      user={item.value}
+      role={props.assigned ? (props.assignments[item.id] || '🐷') : undefined}
+    />
   ));
   return (
     <CelledPanelTable attached='bottom' celled>
@@ -74,7 +78,7 @@ class AssignmentsPanel extends React.Component {
             onReset={this.reset.bind(this)}
           />
         </CelledPanelSegment>
-        <AssignmentsList items={this.props.items} assignments={this.props.assignments} />
+        <AssignmentsList items={this.props.items} assignments={this.props.assignments} assigned={this.state.assigned} />
       </React.Fragment>
     );
   }
